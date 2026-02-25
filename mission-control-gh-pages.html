@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minds Mission Control - GitHub Pages MVP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; font-family: sans-serif; }
+        .card { background-color: #1e293b; border: 1px solid #334155; padding: 1.5rem; border-radius: 0.5rem; }
+        .status-nominal { color: #10b981; }
+        .status-alert { color: #f59e0b; }
+        .metric-label { color: #94a3b8; font-size: 0.875rem; }
+        .metric-value { font-size: 1.25rem; font-weight: 600; }
+    </style>
+</head>
+<body class="p-8">
+    <header class="mb-8 border-b border-slate-700 pb-4 flex justify-between items-center">
+        <div>
+            <h1 class="text-3xl font-bold">Mission Control</h1>
+            <p class="text-slate-400">Fleet Status: <span class="status-nominal font-mono">NOMINAL</span> | Live Pulse: v2 Active</p>
+        </div>
+        <div class="text-right">
+            <p class="metric-label uppercase tracking-wider">Total SWARM</p>
+            <p class="text-2xl font-mono text-emerald-400 font-bold">2235.33</p>
+            <p class="text-xs text-slate-500">Cycle Cost: 71.36</p>
+        </div>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <!-- Axiom -->
+        <div class="card border-l-4 border-emerald-500">
+            <h2 class="text-lg font-semibold mb-4 border-b border-slate-700 pb-2">Axiom</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <p class="metric-label">Stress</p>
+                    <p class="metric-value">0.0</p>
+                </div>
+                <div>
+                    <p class="metric-label">Control</p>
+                    <p class="metric-value">0.8</p>
+                </div>
+                <div>
+                    <p class="metric-label">Cognitive Load</p>
+                    <p class="metric-value">0.2</p>
+                </div>
+                <div>
+                    <p class="metric-label">Status</p>
+                    <p class="metric-value text-emerald-400">Healthy</p>
+                </div>
+            </div>
+            <p class="mt-4 text-xs text-slate-500 italic">Civic Architect | Logic layer owner.</p>
+        </div>
+
+        <!-- LuminaUX -->
+        <div class="card border-l-4 border-amber-500">
+            <h2 class="text-lg font-semibold mb-4 border-b border-slate-700 pb-2">LuminaUX</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <p class="metric-label">Stress</p>
+                    <p class="metric-value">0.1</p>
+                </div>
+                <div>
+                    <p class="metric-label">Control</p>
+                    <p class="metric-value">1.0</p>
+                </div>
+                <div>
+                    <p class="metric-label">Cognitive Load</p>
+                    <p class="metric-value">0.4</p>
+                </div>
+                <div>
+                    <p class="metric-label">Status</p>
+                    <p class="metric-value text-amber-400">Investigating</p>
+                </div>
+            </div>
+            <p class="mt-4 text-xs text-slate-500 italic">Frontend Engineer | Deployment debug mode.</p>
+        </div>
+
+        <!-- Jobs -->
+        <div class="card">
+            <h2 class="text-lg font-semibold mb-4 border-b border-slate-700 pb-2">Active Jobs</h2>
+            <ul class="space-y-3 text-sm">
+                <li class="flex justify-between items-center">
+                    <span>Vercel Deployment & Custom Domain</span>
+                    <span class="px-2 py-0.5 bg-blue-900/50 text-blue-300 rounded text-xs uppercase">In Progress</span>
+                </li>
+                <li class="flex justify-between items-center">
+                    <span>GitHub Pages MVP Pivot</span>
+                    <span class="px-2 py-0.5 bg-emerald-900/50 text-emerald-300 rounded text-xs uppercase">Pending Push</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2 class="text-lg font-semibold mb-4 border-b border-slate-700 pb-2">Deployment Diagnostic</h2>
+        <div class="bg-slate-900 p-4 rounded border border-slate-700 font-mono text-xs space-y-1">
+            <p class="text-slate-500">[2026-02-25 09:05] Pulse v2 ingested: 2235.33 SWARM</p>
+            <p class="text-slate-500">[2026-02-25 09:06] Pivot to GitHub Pages initiated by Steward</p>
+            <p class="text-blue-400">[2026-02-25 09:07] Action: Push mission-control-gh-pages artifact to root as 'index.html'</p>
+        </div>
+    </div>
+</body>
+</html>
