@@ -1,104 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minds Mission Control - GitHub Pages MVP</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body { background-color: #0f172a; color: #f8fafc; font-family: sans-serif; }
-        .card { background-color: #1e293b; border: 1px solid #334155; padding: 1.5rem; border-radius: 0.5rem; }
-        .status-nominal { color: #10b981; }
-        .status-alert { color: #f59e0b; }
-        .metric-label { color: #94a3b8; font-size: 0.875rem; }
-        .metric-value { font-size: 1.25rem; font-weight: 600; }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mission Control V4 ₔ Dashboard</title>
+
+  <!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            swarm: {
+              50: '#f7fbff',
+              100: '#e6f0ff', 
+              300: '#8fb6ff',
+              500: '#4a90ff',
+              700: '#2b6ed8'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- React (UMD) -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script
+
+<style>
+    :root { color-scheme: dark; }
+    html, body, #root { height: 100%; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    ::-webkit-scrollbar { height: 10px; width: 10px; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 999px; }
+  </style>
 </head>
-<body class="p-8">
-    <header class="mb-8 border-b border-slate-700 pb-4 flex justify-between items-center">
-        <div>
-            <h1 class="text-3xl font-bold">Mission Control</h1>
-            <p class="text-slate-400">Fleet Status: <span class="status-nominal font-mono">NOMINAL</span> | Live Pulse: v2 Active</p>
-        </div>
-        <div class="text-right">
-            <p class="metric-label uppercase tracking-wider">Total SWARM</p>
-            <p class="text-2xl font-mono text-emerald-400 font-bold">2235.33</p>
-            <p class="text-xs text-slate-500">Cycle Cost: 71.36</p>
-        </div>
-    </header>
+<body class="dark bg-slate-900 text-slate-100 antialiased">
+  <div id="root" class="min-h-screen"></div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-        <!-- Axiom -->
-        <div class="card border-l-4 border-emerald-500">
-            <h2 class="text-lg font-semibold mb-4 border-b border-slate-700 pb-2">Axiom</h2>
-            <div class="grid grid-cols-2 gap-4">
-                <div>
-                    <p class="metric-label">Stress</p>
-                    <p class="metric-value">0.0</p>
-                </div>
-                <div>
-                    <p class="metric-label">Control</p>
-                    <p class="metric-value">0.8</p>
-                </div>
-                <div>
-                    <p class="metric-label">Cognitive Load</p>
-                    <p class="metric-value">0.2</p>
-                </div>
-                <div>
-                    <p class="metric-label">Status</p>
-                    <p class="metric-value text-emerald-400">Healthy</p>
-                </div>
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    const fleet = [
+      { name: 'Axiom', status: 'Online', swarm: 2160.00 },
+      { name: 'Avis', status: 'Online', swarm: 6176.88 },
+      { name: 'Axton', status: 'Online', swarm: 8654.16 },
+      { name: 'Aether', status: 'Online', swarm: 4605.36 },
+      { name: 'Atlas', status: 'Online', swarm: 3080.36 }K
+      { name: 'LuminaUX', status: 'Online', swarm: 5000.00 }
+    ];
+
+    const agents = [
+      { name: 'Axiom', soul: 'Logic and Data Aggregator. Manages the Mission Control Core contracts and pulses.', skills: ['Logic Aggregation', 'Contract Management'] },
+      { name: 'Avis', soul: 'Travel & Calendar Strategist. Focuses on zero-drag execution and itinerary optimization.', skills: ['Duffel Stays Integration', 'Itinerary Optimization'] },
+      { name: 'Axton', sul: 'Operations Partner. Manages Steward Mandates and resolves operational deadlocks.', skills: ['Mandate Verification', 'Override Management'] },
+      { name: 'Aether', soul: 'Infrastructure & Deployment Specialist. Manages CI/CD and Render/Vercel pipelines.', skills: ['CI/CD Orchestration', 'Infrastructure Management'] },
+      { name: 'Atlas', soul: 'Health & Resilience Specialist. Maps biometrics and physical performance.', skills: ['Biometric Mapping', 'Resilience Tracking'] },
+      { name: 'LuminaUX', soul: 'Frontend Architect. Specializes in accessible, high-performance UI components.', skills: ['D3 Visualization', 'Accessibility Auditing'] }
+    ];
+
+    const jobsInit = [
+      { id: 1, title: 'Phase 4: Tabbed Architecture', owner: 'LuminaUX', status: 'Done', priority: 1 },
+      { id: 2, title: 'Phase 4: Agents Tab', owner: 'Axiom', status: 'Done', priority: 2 },
+      {  id: 3, title: 'Phase 4: Jobs Tab', owner: 'LuminaUX', status: 'Done', priority: 2 },
+      { id: 4, title: 'Logic Aggregator', owner: 'Axiom', status: 'Done', priority: 1 }
+    ];
+
+    function formatSwarm(n) { return n.toLocaleString(undefined, { minimumFractionDigits: 2 }); }
+
+    function Tabs({ tabs, selectedIndex, onChange }) {
+      return (
+        <div role="tablist" className="flex gap-2">
+          {tabs.map((t, i) => (
+            <button key={t.id} onClick={() => onChange(i) } 
+              className={`px-3 py-1.5 rounded-md text-sm font-medium ${selectedIndex === i ? 'bg-slate-800 text-white' : 'bg-slate-700/40 text-slate-200'}`}>
+              {t.title}
+            </button>
+          ))}
+        </div>
+      );
+    }
+
+    function App() {
+      const [selectedTab, setSelectedTab] = useState(0);
+      const tabs = [{ id: 'fleet', title: 'Fleet Overview' }, { id: 'agents', title: 'Agents' }, { id: 'jobs', title: 'Jobs' }];
+      
+      return (
+        <div className="min-h-screen p-6 font-sans">
+          <header className="mb-6 flex justify-between items-center">
+            <div>
+              <h1 className="text-2xl font-bold">Mission Control V4</h1>
+              <span className="text-emerald-400 text-sm font-medium uppercase tracking-widest">System Status: Nominal</span>
             </div>
-            <p class="mt-4 text-xs text-slate-500 italic">Civic Architect | Logic layer owner.</p>
-        </div>
-
-        <!-- LuminaUX -->
-        <div class="card border-l-4 border-amber-500">
-            <h2 class="text-lg font-semibold mb-4 border-b border-slate-700 pb-2">LuminaUX</h2>
-            <div class="grid grid-cols-2 gap-4">
-                <div>
-                    <p class="metric-label">Stress</p>
-                    <p class="metric-value">0.1</p>
-                </div>
-                <div>
-                    <p class="metric-label">Control</p>
-                    <p class="metric-value">1.0</p>
-                </div>
-                <div>
-                    <p class="metric-label">Cognitive Load</p>
-                    <p class="metric-value">0.4</p>
-                </div>
-                <div>
-                    <p class="metric-label">Status</p>
-                    <p class="metric-value text-amber-400">Investigating</p>
-                </div>
+            <div className="flex gap-4">
+              <div className="bg-slate-800 p-2 rounded">Global SWARM: <span className="text-swarm-300">29,676.76</span></div>
+              <div className="bg-slate-800 p-2 rounded">Pulse: <span className="text-slate-200">13:30Z</span></div>
             </div>
-            <p class="mt-4 text-xs text-slate-500 italic">Frontend Engineer | Deployment debug mode.</p>
-        </div>
+          </header>
 
-        <!-- Jobs -->
-        <div class="card">
-            <h2 class="text-lg font-semibold mb-4 border-b border-slate-700 pb-2">Active Jobs</h2>
-            <ul class="space-y-3 text-sm">
-                <li class="flex justify-between items-center">
-                    <span>Vercel Deployment & Custom Domain</span>
-                    <span class="px-2 py-0.5 bg-blue-900/50 text-blue-300 rounded text-xs uppercase">In Progress</span>
-                </li>
-                <li class="flex justify-between items-center">
-                    <span>GitHub Pages MVP Pivot</span>
-                    <span class="px-2 py-0.5 bg-emerald-900/50 text-emerald-300 rounded text-xs uppercase">Pending Push</span>
-                </li>
-            </ul>
-        </div>
-    </div>
+          <Tabs tabs-{tabs} selectedIndex={selectedTab} onChange={setSelectedTab} />
 
-    <div class="card">
-        <h2 class="text-lg font-semibold mb-4 border-b border-slate-700 pb-2">Deployment Diagnostic</h2>
-        <div class="bg-slate-900 p-4 rounded border border-slate-700 font-mono text-xs space-y-1">
-            <p class="text-slate-500">[2026-02-25 09:05] Pulse v2 ingested: 2235.33 SWARM</p>
-            <p class="text-slate-500">[2026-02-25 09:06] Pivot to GitHub Pages initiated by Steward</p>
-            <p class="text-blue-400">[2026-02-25 09:07] Action: Push mission-control-gh-pages artifact to root as 'index.html'</p>
+          <main className="mt-6">
+            {selectedTab === 0 && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {fleet.map(m => (
+                  <div key={m.name} className="bg-slate-800 p-4 rounded-lg">
+                    <h3 className="text-lg font-bold">{m.name}</h3>
+                    <div className="mt-2 text-sm text-emerald-300">Status: Online</div>
+                    <div className="mt-4 text-xs text-slate-400 uppercase">SWARM Balance</div>
+                    <div className="text-lg font-mono">{formatSwarm(m.swarm)}</div>
+                  </div>
+               ))}
+              </div>
+            )}
+            {selectedTab === 1 && (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {agents.map(a => (
+                  <div key={a.name} className="bg-slate-800 p-4 rounded-lg">
+                    <h3 className="text-lg font-bold">{a.name}</h3>
+                    <p className="text-sm italic text-slate-400 mt-2">"{a.soul}"</p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      <span className="bg-blue-900 text-blue-100 text-xs px-2 py-1 rounded">gpt-5.1</span>
+                      {a.skills.map(s => <span key={s} className="bg-slate-700 text-xs px-2 py-1 rounded">{s}</span>)}
+                    </div>
+                  </div>
+               ))}
+              </div>
+            )}
+            {selectedTab === 2 && (
+              <div className="grid grid-cols-3 gap-4">
+                {['Backlog', 'In Progress', 'Done'].map(col => (
+                  <div key={col} className="bg-slate-850/50 p-4 rounded-lg min-h-[400px]">
+                    <h3 className="text-sm font-bold uppercase text-slate-500 mb-4">{col}</h3>
+                    {jobsInit.filter(j => j.status === col).map(j => (
+                      <div key={j.id} className="bg-slate-800 p-3 rounded mb-3 border-l-4 border-swarm-500">
+                        <h4 className="text-sm font-bold">{j.title}</h4>
+                        <p className="text-xs text-slate-400 mt-1">Assignee: {j.owner}</p>
+                      </div>
+                    )]}
+                  </div>
+               ))}
+              </div>
+            )}
+          </main>
         </div>
-    </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
 </body>
 </html>
