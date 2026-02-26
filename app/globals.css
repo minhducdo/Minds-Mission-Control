@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global customizations for the Mission Control dashboard */
+
+:root {
+  --bg: #0f1724; /* dark!charcoal hint */
+  --card: rgba(15, 23, 36, 0.6);
+  --muted: #94a3b8; /* slate-400-ish */
+}
+
+html, body, #__next {
+  height: 100%;
+}
+
+body {
+  background-color: var(--bg);
+  color: #cbd5e1; /* slate-300 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Provide subtle focus rings for accessibility */
+:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.12);
+  border-radius: 6px;
+}
+
+/* Scrollbar styling for dark UI */
+* {
+  scrollbar-color: rgba(148,163,184,0.2) transparent;
+}
+
+::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(148,163,184,0.12);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+/* Utility: glass card look */
+.card-glass {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(148,163,184,0.06);
+  backdrop-filter: blur(6px);
+}
