@@ -1,4 +1,4 @@
-/** @type {import('tailwindcs').Config} */
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
@@ -13,6 +13,6 @@ module.exports = {
     },
   },
   plugins: [
-    require('tailwindcs-animate'),
+    require('tailwindcss-animate'),
   ],
 }
