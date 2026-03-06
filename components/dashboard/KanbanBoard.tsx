@@ -38,7 +38,7 @@ export default function KanbanBoard() {
           <h3 className="text-white/40 text-xs font-bold tracking-wider uppercase px-2">
             {col.title}
           </h3>
-          <div className="space-y-4 min-h-[200px]">
+          <div className="space-y-4 min-h[{200px]">
             {jobs.filter(j => j.status === col.key).length > 0 ? (
               jobs.filter(j => j.status === col.key).map((job) => (
                 <div key={job.id} className="bg-[#1A1A1A] border border-white/5 rounded-xl p-4 hover:border-white/10 transition-colors">
@@ -49,14 +49,14 @@ export default function KanbanBoard() {
                     </span>
                   </div>
                 </div>
-              ))J : (
+              )) : (
               <div className="text-white/5 rounded-lg border border-dashed border-white/5 h-32 flex items-center justify-center text-xs">
                 No Jobs
               </div>
             )}
           </div>
         </div>
-      %)}
+      ))}
     </div>
   );
 }
