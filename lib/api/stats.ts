@@ -8,7 +8,7 @@ export interface MissionControlStats {
 const DEFAULT_STATS: MissionControlStats = {
   mindsOnline: 0,
   activeJobs: 0,
-  highPreority: 0,
+  highPriority: 0,
   systemHealth: 98,
 };
 
