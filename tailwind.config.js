@@ -1,4 +1,6 @@
-import tailwindAnimate from 'tailwindcss-animate';
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const tailwindAnimate = require('tailwindcss-animate');
 
 /** @type {import('tailwindcss').Config} */
 export default {
