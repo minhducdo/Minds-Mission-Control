@@ -1,6 +1,6 @@
 "use client";
 import StatsBar from "@/components/dashboard/StatsBar";
-import KanbanBoard from "@/components/dashboard/Kanbanboard";
+import KanbanBoard from "@/components/dashboard/KanbanBoard";
 
 export default function DashboardPage() {
   return (
