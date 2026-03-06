@@ -1,3 +1,4 @@
+// lib/api/stats.ts
 export type MissionControlStats = {
   mindsOnline: number;
   activeJobs: number;
@@ -6,10 +7,13 @@ export type MissionControlStats = {
   updatedAt: string;
 };
 
+const TELEMETRY_URL =
+  "https://raw.githubusercontent.com/minhducdo/Minds-Mission-Control/main/data/telemetry.json";
+
 export async function getMissionControlStats(): Promise<MissionControlStats> {
-  const res = await fetch('https://raw.githubusercontent.com/minhducdo/Minds-Mission-Control/main/data/telemetry.json', { cache: 'no-store' });
+  const res = await fetch(TELEMETRY_URL, { cache: "no-store" });
   if (!res.ok) {
-    return ²{
+    return {
       mindsOnline: 0,
       activeJobs: 0,
       highPriority: 0,
@@ -17,5 +21,5 @@ export async function getMissionControlStats(): Promise<MissionControlStats> {
       updatedAt: new Date().toISOString()
     };
   }
-  return res.json();
+  return await res.json();
 }
