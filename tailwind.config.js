@@ -1,5 +1,7 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import tailwindAnimate from 'tailwindcss-animate';
+
+** @type {import('tailwindcss').Config} */
+export default {
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -9,10 +11,10 @@ module.exports = {
       colors: {
         background: '#0f112a',
         foreground: '#cbd5e1',
-      }
+      },
     },
   },
   plugins: [
-    require('tailwindcss-animate'),
+    tailwindAnimate,
   ],
 }
