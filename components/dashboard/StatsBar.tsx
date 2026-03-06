@@ -1,31 +1,39 @@
 // components/dashboard/StatsBar.tsx
 "use client";
+
 import * as React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getMissionControlStats } from "@/lib/api/stats";
+import { Activity, AlertTriangle, ShieldCheck, Users } from "lucide-react";
+import { getMissionControlStats, type MissionControlStats } from "@/lib/api/stats";
 
-export default function StatsBar() {
-  const { data: stats } = useQuery({
+export function StatsBar() {
+  const { data: stats, isLoading } = useQuery<MissionControlStats>({
     queryKey: ["mission-control", "stats"],
     queryFn: () => getMissionControlStats(),
-    refetchInterval: 30000,
+    refetchInterval: 30_000,
   });
 
-  const items = [
-    { label: "Minds Online", value: stats?.mindsOnline ?? "...", icon: "Users" },
-    { label: "Active Jobs", value: stats?.activeJobs ?? "...", icon: "Activity" },
-    { label: "High Priority", value: stats?.highPriority ?? "...", icon: "AlertTriangle" },
-    { label: "System Health", value: `${stats?.systemHealth ?? "..." }%`, icon: "ShieldCheck" },
-  ];
-
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-      {items.map((item) => (
-        <div key={item.label} className="bg-[#1A1A1A] p-4 rounded-xl border border-white/5 hover:border-white/10 transition-all">
-          <div className="text-white/60 text-xs mb-1 uppercase tracking-wider font-semibold">{item.label}</div>
-          <div className="text-white text-2xl font-bold font-mono tracking-tight">{item.value}</div>
-        </div>
-      ))}
-    </div>
+    <section className="w-full grid grid-cols-4 gap-4">
+       {/* UI implementation */}
+       <div className="bg-[#1A1A1A] p-4 rounded-xl xl border border-white/5">
+         <div className="text-white/60 text-xs">Minds Online</div>
+         <div className="text-white text-xl ont-bold">{stats?.mindsOnline ?? "..."}</div>
+       </div>
+       <div className="bg-[#1A1A1A] p-4 rounded-xl xl border border-white/5">
+         <div className="text-white/60 text-xs">Active Jobs</div>
+         <div className="text-white text-xl font-bold">{stats?.activeJobs ?? "..."}</div>
+       </div>
+       <div className="bg-[#1A1A1A] p-4 rounded-xl xl border border-white/5">
+         <div className="text-white/60 text-xs">High Priority</div>
+         <div className="text-white text-xl ont-bold">{stats?.highPriority ?? "..."}</div>
+       </div>
+       <div className="bg-[#1A1A1A] p4 rounded-xl xl border border-white/5">
+         <div className="text-white/60 text-xs">System Health</div>
+         <div className="text-white text-xl font-bold">{stats?.systemHealth ?? "..."}%</div>
+       </div>
+    </section>
   );
 }
+
+export default StatsBar;
