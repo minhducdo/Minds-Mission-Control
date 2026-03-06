@@ -2,7 +2,6 @@
 "use client";
 
 import * as React from "react";
-import { JobCard } from "@/components/ui/JobCard";
 
 export default function KanbanBoard() {
   return (
