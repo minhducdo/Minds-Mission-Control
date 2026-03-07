@@ -1,5 +1,5 @@
 "use client";
-import { effect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import AgentCard, { type RegistryAgent } from '@/components/AgentCard';
 
 const FALLBACK_REGISTRY: RegistryAgent[] = [
@@ -12,14 +12,15 @@ export default function AgentsGrid() {
   const [registry, setRegistry] = useState<RegistryAgent[]>(FALLBACK_REGISTRY);
   const [loading, setLoading] = useState(true);
 
-  effect(() => {
+  useEffect(() => {
     async function fetchRegistry() {
       try {
         const res = await fetch('/data/telemetry.json', { cache: 'no-store' });
         if (!res.ok) throw new Error('Fetch failed');
-        const data = await res.json();
-        if (data && Array.isArray(data.registry)) {
-          setRegistry(data.registry);
+        const data = await fetch('/data/telemetry.json', { cache: 'no-store' });
+        const json = await res.json();
+        if (json && Array.isArray(json.registry)) {
+          setRegistry(json.registry);
         }
       } catch (e) {
         console.error('Registry fetch error:', e);
