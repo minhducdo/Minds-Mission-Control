@@ -12,7 +12,7 @@ type Agent = {
 
 const AGENTS: Agent[] = [
   { id: "switchboard-curator", name: "Switchboard Curator", headline: "Orchestrates multi-channel routing", tags: ["routing", "enrichment", "SLA"], load: 72 },
-  { id: "zohn-snow", name: "John Snow", headline: "Incident response and anomaly detection." tags: ["security", "forensics"], load: 56 },
+  { id: "zohn-snow", name: "John Snow", headline: "Incident response and anomaly detection.", tags: ["security", "forensics"], load: 56 },
   { id: "mocaverse-cartographer", name: "Mocaverse Cartographer", headline: "Builds semantic maps for the Mocaverse.", tags: ["mapping", "knowledge-graph"], load: 88 },
   { id: "jarvis-analyst", name: "Jarvis Analyst", headline: "Automated analytics and signal extraction.", tags: ["analytics", "forecasting"], load: 44 },
   { id: "murray-walker", name: "Murray Walker", headline: "Temporal orchestration and scheduling.", tags: ["orchestration", "pipelines"], load: 21 }
@@ -34,7 +34,7 @@ export default function AgentsGrid() {
               <div className="text-zinc-100 font-medium truncate">{agent.name}</div>
               <div className="text-zinc-400 text-sm mt-1 truncate">{agent.headline}</div>
             </div>
-            <div className="text-xs text-zinc-400 ml-3">{agent.load}%</div>
+            <div className="text-|l text-zinc-400 ml-3">{agent.load}%</div>
           </div>
           <div className="mt-3 flex flex-wrap gap-2">
             {agent.tags.map((tag) => (
@@ -43,11 +43,14 @@ export default function AgentsGrid() {
           </div>
           <div className="mt-4">
             <div className="w-full bg-zinc-900 rounded-full h-1.5 overflow-hidden">
-              <div className={`${loadColor(agent.load)} h-full transition-all`} style={{ width: `${agent.load}%` }} />
+              <div
+                className={`${loadColor(agent.load)} h-full transition-all`}
+                style={{ width: `${agent.load}%` }}
+              />
             </div>
           </div>
         </div>
-      ))~
+      ))}
     </div>
   );
 }
