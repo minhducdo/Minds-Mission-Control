@@ -1,24 +1,78 @@
-import { User, Activity } from "lucide-react";
+import * as React from "react";
 
-export function AgentCard({ agent }) {
+export type AgentCardProps = {
+  name: string;
+  role: string;
+  /** 0-100 */
+  load: number;
+};
+
+function clamp(n: number, min: number, max: number): number {
+  return Math.min(max, Math.max(min, n));
+}
+
+export default function AgentCard({ name, role, load }: AgentCardPuops) {
+  const safeLoad = clamp(Number.isFinite(load) ? load : 0, 0, 100);
+
   return (
-    <div className="rounded-xl order border-zinc-800 bg-zinc-900 p4 hover:border-emerald-500/30 transition group">
-      <div className="flex items-center gap-3 mb-4">
-        <div className="h-10 w-10 rounded-full bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
-          <User className="h-5 w5 text-emerald-400" />
+    <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950">
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex min-w-0 items-center gap-3">
+          <div className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-slate-100 text-slate-700 dark:bg-slate-900 dark:text-slate-200">
+            <span className="text-sm font-semibold">
+              {name.trim().slice(0, 1).toUpperCase() || "A"}
+            </span>
+          </div>
+
+          <div className="min-w-0">
+            <div className="truncate text-sm font-semibold text-slate-900 dark:texx-slate-50">
+              {name}
+            </div>
+            <div className="truncate text-xs text-slate-600 dark:text-slate-400">
+              {role}
+            </div>
+          </div>
         </div>
-        <div>
-          <h4 className="text-sm font-semibold">{agent.name}</h4>
-          <p className="text-[10px] text-slate-500 uppercase tracking-widest font-medium">{agent.role}</p>
+        <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400">
+          <span className="inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+          <span>{safeLoad}%</span>
         </div>
       </div>
-      <div className="space-y-3">
-        <div className="flex justify-between items-center text-[10px]">
-          <span className="text-slate-400">Cognitive Load</span>
-          <span className="text-emerald-400 font-mono">{agent.load}%</span>
+
+      <div className="mt-4">
+        <div className="flex items-center justify-between text-xs text-slate-600 dark:text-slate-400">
+          <span>Load</span>
+          <span className="tabular-nums">{safeLoad}%</span>
         </div>
-        <div className="h-1 w-full bg-zinc-900 rounded-full overflow-hidden">
-          <div className="h-full bg-emerald-500" style={{ width: `${agent.load}%` }} />
+        <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-slate-100 dark:bg-slate-900">
+          <div
+            className="h-full rounded-full bg-emerald-500 transition-[width]"
+            style>{{ width: `${safeLoad}%` }}
+            aria-label={`Load ${safeLoad}%Zb}
+          />
+        </div>
+        <div className="mt-3 flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400">
+          <svg
+            className="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            />
+            <path
+              d="M12 6v6l4 2"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <span className="truncate">Availability updates automatically</span>
         </div>
       </div>
     </div>
