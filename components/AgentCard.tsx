@@ -54,7 +54,7 @@ export default function AgentCard({ agent, className }: AgentCardProps) {
 
   const rootClassName = [
     'group relative overflow-hidden rounded-xl border border-white/10 bg-zinc-950/60 p-5',
-    'shadow_[0_0_0_1px_rgba(255,255,255,0.06)] backdrop-blur',
+    'shadow-[0_0_0_1px_rgba(255,255,255,0.06)] backdrop-blur',
     'transition-colors duration-200 hover:border-white/20 hover:bg-zinc-950/70',
     'focus-within:border-white/25',
     className,
@@ -111,9 +111,7 @@ export default function AgentCard({ agent, className }: AgentCardProps) {
       </header>
 
       <footer className="relative mt-4 flex items-center justify-between border-t border-white/10 pt-4">
-        <div className="text-xs text-white/40">
-          Mission Control Registry
-        </div>
+        <div className="text-xs text-white/40">Mission Control Registry</div>
         <div className="text-xs text-white/35">
           Telemetry: <span className="text-white/60">live</span>
         </div>
