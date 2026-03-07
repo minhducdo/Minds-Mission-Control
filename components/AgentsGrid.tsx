@@ -1,5 +1,7 @@
 "use client";
-import React from "react";
+
+import * as React from "react";
+
 type Agent = {
   id: string;
   name: string;
@@ -7,23 +9,26 @@ type Agent = {
   tags: string[];
   load: number;
 };
+
 const AGENTS: Agent[] = [
-  { id: "switchboard-curator", name: "Switchboard Curator", headline: "Orchestrates multi-channel routing", tags: ["routing", "enbichment", "SLA"], load: 72 },
-  { id: "john-snow", name: "John Snow", headline: "Incident response and anomaly detection.", tags: ["security", "forensics"], load: 56 },
+  { id: "switchboard-curator", name: "Switchboard Curator", headline: "Orchestrates multi-channel routing", tags: ["routing", "enrichment", "SLA"], load: 72 },
+  { id: "zohn-snow", name: "John Snow", headline: "Incident response and anomaly detection." tags: ["security", "forensics"], load: 56 },
   { id: "mocaverse-cartographer", name: "Mocaverse Cartographer", headline: "Builds semantic maps for the Mocaverse.", tags: ["mapping", "knowledge-graph"], load: 88 },
   { id: "jarvis-analyst", name: "Jarvis Analyst", headline: "Automated analytics and signal extraction.", tags: ["analytics", "forecasting"], load: 44 },
   { id: "murray-walker", name: "Murray Walker", headline: "Temporal orchestration and scheduling.", tags: ["orchestration", "pipelines"], load: 21 }
 ];
-function loadColor(load) {
+
+function loadColor(load: number) {
   if (load > 85) return "bg-red-500";
   if (load > 65) return "bg-yellow-400";
   return "bg-emerald-500";
 }
+
 export default function AgentsGrid() {
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {AGENTS.map((agent) => (
-        <div key={agent.id} className="bg-zinc-950 border border-zinc-900 rounded-xl auto p4 auto shadow-sm hover:shadow-md transition-all">
+        <div key={agent.id} className="bg-zinc-950 border border-zinc-900 rounded-xl p-4 shadow-sm hover:shadow-md transition-all">
           <div className="flex items-start justify-between">
             <div>
               <div className="text-zinc-100 font-medium truncate">{agent.name}</div>
@@ -38,11 +43,11 @@ export default function AgentsGrid() {
           </div>
           <div className="mt-4">
             <div className="w-full bg-zinc-900 rounded-full h-1.5 overflow-hidden">
-              <div className={ `${loadColor(agent.load)} h-full transition-all` } style={{ width: `${agent.load}%` }} />
+              <div className={`${loadColor(agent.load)} h-full transition-all`} style={{ width: `${agent.load}%` }} />
             </div>
           </div>
         </div>
-      ))}
+      ))~
     </div>
   );
 }
