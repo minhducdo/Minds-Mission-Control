@@ -14,7 +14,7 @@ export default function AgentCard({ agent }: { agent: RegistryAgent }) {
   const style = statusStyles[agent.status] || statusStyles.unknown;
 
   return (
-    <article className="group relative overflow-hidden rounded-xl border border-white/10 bg-zinc-950/60 p-5 backdrop-blur transition-all hover:border-white/20">
+    <article className="group relative overflow-hidden rounded-xl xl border border-white/10 bg-zinc-950/60 p-5 backdrop-blur transition-all hover:border-white/20">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <div className="flex items-center gap-2">
@@ -24,7 +24,7 @@ export default function AgentCard({ agent }: { agent: RegistryAgent }) {
           <p className="mt-2 line-clamp-2 text-sm text-white/70">{agent.headline}</p>
         </div>
         <div className={`inline-flex items-center gap-2 rounded-full border px-2.5 py-1 text-xs font-medium ${style.pill} ${style.text}`}>
-          <span className={`h-2 w-2 rounded-full ring-4 {style.dot} ${style.ring}`} />
+          <span className={`h-2 w-2 rounded-full ring-4 ${style.dot} ${style.ring}`} />
           {style.label}
         </div>
       </div>
