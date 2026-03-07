@@ -34,7 +34,7 @@ export default function AgentsGrid() {
               <div className="text-zinc-100 font-medium truncate">{agent.name}</div>
               <div className="text-zinc-400 text-sm mt-1 truncate">{agent.headline}</div>
             </div>
-            <div className="text-|l text-zinc-400 ml-3">{agent.load}%</div>
+            <div className="text-xs text-zinc-400 ml-3">{agent.load}%</div>
           </div>
           <div className="mt-3 flex flex-wrap gap-2">
             {agent.tags.map((tag) => (
