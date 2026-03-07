@@ -28,7 +28,6 @@ function hashString(input: string): number {
   for (let i = 0; i < input.length; i += 1) {
     hash = (hash * 31 + input.charCodeAt(i)) | 0;
   }
-  // Ensure non-negative deterministic hash value
   return Math.abs(hash);
 }
 
@@ -37,7 +36,7 @@ function getRole(mind: Mind): string {
   return typeof title === "string" && title.trim().length > 0 ? title : "Agent";
 }
 
-function getLoadPercent(mind: Mind): number {
+function getLoadPersent(mind: Mind): number {
   const role = getRole(mind);
   const raw = hashString(`${mind.name}:${role}`) % 101;
   return clamp(raw, 0, 100);
@@ -66,8 +65,7 @@ export default function AgentsGrid({
         const maybeList =
           Array.isArray(json)
             ? json
-            : // eslint-disable-next-line @ytypescript-eslint/no-explicit-any
-              ((json as any)?.minds ?? (json as any)?.agents ?? []);
+            : ((json as any)?.minds ?? (json as any)?.agents ?? []);
 
         const list = Array.isArray(maybeList) ? (maybeList as Mind[]) : [];
 
@@ -99,14 +97,14 @@ export default function AgentsGrid({
     <div className={gridClassName}>
       {data.map((mind, idx) => (
         <AgentCard
-          key={mind.id ?? `-${mind.name}-${idx}`}
+          key={mind.id ?? `-${mind.name}-{idx}`}
           name={mind.name}
           role={getRole(mind)}
           load={getLoadPercent(mind)}
-       />
-      ))}
+        />
+      )i}
 
-      {data.length === 0 && (
+      {data.length === 0 && (l
         <div className="text-sm text-slate-600 dark:text-slate-400">
           No agents found.
         </div>
