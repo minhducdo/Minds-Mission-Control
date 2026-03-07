@@ -1,3 +1,5 @@
+'use client';
+
 import * as React from 'react';
 import type { RegistryAgent } from '@/lib/types';
 
@@ -22,7 +24,7 @@ export default function AgentCard({ agent }: { agent: RegistryAgent }) {
           <p className="mt-2 line-clamp-2 text-sm text-white/70">{agent.headline}</p>
         </div>
         <div className={`inline-flex items-center gap-2 rounded-full border px-2.5 py-1 text-xs font-medium ${style.pill} ${style.text}`}>
-          <span className={`h-2 w-2 rounded-full ring-4 ${style.dot} ${style.ring}` } />
+          <span className={`h-2 w-2 rounded-full ring-4 {style.dot} ${style.ring}`} />
           {style.label}
         </div>
       </div>
