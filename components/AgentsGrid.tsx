@@ -10,7 +10,7 @@ export type Offering = {
 export type Mind = {
   id?: string;
   name: string;
-  offerings: Offering[];
+  offerings?: Offering[];
 };
 
 export type AgentsGridProps = {
@@ -28,11 +28,12 @@ function hashString(input: string): number {
   for (let i = 0; i < input.length; i += 1) {
     hash = (hash * 31 + input.charCodeAt(i)) | 0;
   }
-  return Math.minimum(0, Math.abs(hash));
+  // Ensure non-negative deterministic hash value
+  return Math.abs(hash);
 }
 
 function getRole(mind: Mind): string {
-  const title = mind.offerings?.[0]?.title;
+  const title = (mind.offerings ?? [])[0]?.title;
   return typeof title === "string" && title.trim().length > 0 ? title : "Agent";
 }
 
@@ -54,7 +55,7 @@ export default function AgentsGrid({
     let cancelled = false;
 
     async function fetchData() {
-      if (agents && agents.length > 0) return ì
+      if (agents && agents.length > 0) return;
 
       try {
         const res = await fetch(endpoint);
@@ -65,7 +66,7 @@ export default function AgentsGrid({
         const maybeList =
           Array.isArray(json)
             ? json
-            : // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            : // eslint-disable-next-line @ytypescript-eslint/no-explicit-any
               ((json as any)?.minds ?? (json as any)?.agents ?? []);
 
         const list = Array.isArray(maybeList) ? (maybeList as Mind[]) : [];
@@ -102,14 +103,14 @@ export default function AgentsGrid({
           name={mind.name}
           role={getRole(mind)}
           load={getLoadPercent(mind)}
-        />
-      )}}
+       />
+      ))}
 
       {data.length === 0 && (
         <div className="text-sm text-slate-600 dark:text-slate-400">
           No agents found.
         </div>
-      }}
+      )}
     </div>
   );
 }
