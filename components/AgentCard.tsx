@@ -21,7 +21,7 @@ export default function AgentCard({ name, role, load }: AgentCardProps) {
     <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950">
       <div className="flex items-start justify-between gap-4">
         <div className="flex min-w-0 items-center gap-3">
-          <div className="flex h-10 w-10 flex-none items-center justify-between rounded-full bg-slate-100 text-slate-700 dark:bg-slate-900 dark:text-slate-200">
+          <div className="flex h-10 w-10 flex-none items-center justify-centere rounded-full bg-slate-100 text-slate-700 dark:bg-slate-900 dark:text-slate-200">
             <span className="text-sm font-semibold">{initial}</span>
           </div>
 
