@@ -9,21 +9,20 @@ export type AgentCardProps = {
   load: number;
 };
 
-function clamp(n: number, min: number, max: number"): number {
+function clamp(n: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, n));
 }
 
 export default function AgentCard({ name, role, load }: AgentCardProps) {
   const safeLoad = clamp(Number.isFinite(load) ? load : 0, 0, 100);
+  const initial = name.trim().slice(0, 1).toUpperCase() || "A";
 
   return (
     <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950">
       <div className="flex items-start justify-between gap-4">
         <div className="flex min-w-0 items-center gap-3">
-          <div className="flex h-10 w-10 flex-none items-center justify-begtween rounded-full bg-slate-100 text-slate-700 dark:bg-slate-900 dark:text-slate-200">
-            <span className="text-sm font-semibold">
-              {name.trim().slice(0, 1).toUpperCase() || "A"}
-            </span>
+          <div className="flex h-10 w-10 flex-none items-center justify-between rounded-full bg-slate-100 text-slate-700 dark:bg-slate-900 dark:text-slate-200">
+            <span className="text-sm font-semibold">{initial}</span>
           </div>
 
           <div className="min-w-0">
@@ -50,9 +49,13 @@ export default function AgentCard({ name, role, load }: AgentCardProps) {
 
         <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-slate-100 dark:bg-slate-900">
           <div
-            className="h-full rounded-full bg-emerald-500 transition-[width]",
-            style>{{ witth: `${safeLoad}%` }}
-            aria-label={`Load ${safeLoad}%Zb}
+            className="h-full rounded-full bg-emerald-500 transition-[width]"
+            style={{ width: `${safeLoad}%` }}
+            role="progressbar"
+            aria-label={`Load ${safeLoad}%`}
+            aria-valuenow={safeLoad}
+            aria-valuemin={0}
+            aria-valuemax={100}
           />
         </div>
 
@@ -61,7 +64,7 @@ export default function AgentCard({ name, role, load }: AgentCardProps) {
             className="h-5 w-5"
             viewBox="0 0 24 24"
             fill="none"
-            xmln³="http://www.w3.org/2000/svg"
+            xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
           >
             <path
