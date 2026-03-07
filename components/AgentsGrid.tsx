@@ -17,7 +17,6 @@ export default function AgentsGrid() {
       try {
         const res = await fetch('/data/telemetry.json', { cache: 'no-store' });
         if (!res.ok) throw new Error('Fetch failed');
-        const data = await fetch('/data/telemetry.json', { cache: 'no-store' });
         const json = await res.json();
         if (json && Array.isArray(json.registry)) {
           setRegistry(json.registry);
