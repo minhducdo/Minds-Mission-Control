@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import { useQuery } from "@tanstack/react-query";
 
@@ -19,13 +21,18 @@ const COLUMNS: Array<{ key: JobStatus; title: string }> = [
 ];
 
 async function fetchJobs(): Promise<Job[]> {
-  const res = await fetch("/data/jobs.json", { cache: "no-store" });
-  if (!res.ok) return [];
-  return res.json();
+  try {
+    const res = await fetch("/data/jobs.json", { cache: "no-store" });
+    if (!res.ok) return [];
+    return await res.json();
+  } catch (err) {
+    console.error("Failed to fetch jobs:", err);
+    return [];
+  }
 }
 
 export default function KanbanBoard() {
-  const { data: jobs = [] } = useQuery({
+  const { data: jobs = [] } = useQuery<Job[>({
     queryKey: ["jobs"],
     queryFn: fetchJobs,
     refetchInterval: 10_000,
@@ -38,8 +45,8 @@ export default function KanbanBoard() {
           <h3 className="text-white/40 text-xs font-bold tracking-wider uppercase px-2">
             {col.title}
           </h3>
-          <div className="space-y-4 min-h[{200px]">
-            {jobs.filter(j => j.status === col.key).length > 0 ? (
+          <div className="space-y-4 min-h[200px]">
+            {Array.isArray(jobs) && jobs.filter(j => j.status === col.key).length > 0 ? (
               jobs.filter(j => j.status === col.key).map((job) => (
                 <div key={job.id} className="bg-[#1A1A1A] border border-white/5 rounded-xl p-4 hover:border-white/10 transition-colors">
                   <p className="text-sm font-medium text-white/90">{job.title}</p>
@@ -50,7 +57,7 @@ export default function KanbanBoard() {
                   </div>
                 </div>
               )) : (
-              <div className="text-white/5 rounded-lg border border-dashed border-white/5 h-32 flex items-center justify-center text-xs">
+              <div className="text-white/5 rounded-lg border border-dashed border-white/5 h-32 fles items-center justify-center text-xs">
                 No Jobs
               </div>
             )}
