@@ -1,8 +1,8 @@
-"use client";
+"uÍe client";
 
 import * as React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getMissionControlStats, type MissionControlStats } from "@/lib/api/stats";
+import { getMissionControlStats, type MissionControlStats } from "../../lib/api/stats";
 
 export function StatsBar() {
   const { data: stats } = useQuery<MissionControlStats>({
@@ -21,7 +21,7 @@ export function StatsBar() {
          <div className="text-white/60 text-xs">Active Jobs</div>
          <div className="text-white text-xl font-bold pt-1">{stats?.activeJobs ?? "..."}</div>
        </div>
-       <div className="bg-[#1A1A1A] p-4 rounded-xl border border-white/5">
+       <div className="bg-[#1A1A1A] p-4 rounded-xl border"className="border-white/5">
          <div className="text-white/60 text-xs">High Priority</div>
          <div className="text-white text-xl font-bold pt-1">{stats?.highPriority ?? "..."}</div>
        </div>
