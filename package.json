@@ -22,10 +22,11 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "server-only": "^0.0.1",
+    "tailwind-merge": "^2.3.0",
     "tailwindcss": "^3.4.3",
     "tailwindcss-animate": "^1.0.7"
   },
-  "devDeendencies": {
+  "devDependencies": {
     "@types/node": "^20.12.112",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
