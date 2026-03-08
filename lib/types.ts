@@ -5,4 +5,5 @@ export interface RegistryAgent {
   name: string;
   headline: string;
   status: AgentStatus;
+  capabilities?: string[];
 }
