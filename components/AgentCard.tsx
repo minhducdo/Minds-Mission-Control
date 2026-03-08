@@ -25,7 +25,7 @@ export default function AgentCard({ agent }: { agent: RegistryAgent }) {
         </div>
         <div className={`inline-flex items-center gap-2 rounded-full border px-2.5 py-1 text-xs font-medium ${style.pill} ${style.text}`}>
           <span className={`h-2 w-2 rounded-full ring-4 ${style.dot} ${style.ring}` } />
-          <{style.label}
+          {style.label}
         </div>
       </div>
     </article>
