@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
-import AgentCard from '@/components/AgentCard';
-import type { RegistryAgent } from '@/lib/types';
+import AgentCard from './AgentCard';
+import type { RegistryAgent } from '../lib/types';
 export default function AgentsGrid() {
   const [agents, setAgents] = React.useState<RegistryAgent[]>([]);
   const [loading, setLoading] = React.useState(true);
