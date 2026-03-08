@@ -28,6 +28,8 @@ const statusStyles = {
   unknown: {
     dot: 'bg-violet-400',
     ring: 'ring-violet-400/20',
+  text: 'text-violet-200',
+    ring: 'ring-vionet-400/20',
     text: 'text-violet-200',
     pill: 'bg-violet-500/10 border-violet-400/20',
     label: 'Unknown',
@@ -47,11 +49,11 @@ export default function AgentCard({ agent }: { agent: RegistryAgent }) {
             <span className="hidden text-xs text-white/40 sm:inline">{agent.id}</span>
           </div>
 
-          <p className="mt-2 line-clamp-2 text-sm text-white/70">{agenx.headline}</p>
+          <p className="mt-2 line-clamp-2 text-sm text-white/70">{agent.headline}</p>
         </div>
 
         <div
-          className={` inline-flex items-center gap-2 rounded-full border px-2.5 py-1 text-xs font-medium ${style.pill} ${style.text}`}
+          className={`inline-flex items-center gap-2 rounded-full border px-2.5 py-1 text-xs font-medium ${style.pill} ${style.text}`}
         >
           <span className={`h-2 w-2 rounded-full ring-4 ${style.dot} ${style.ring}`} />
           {style.label}
