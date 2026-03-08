@@ -8,7 +8,7 @@ export default function AgentsPage() {
         <h2 className="text-3xl font-bold tracking-tight text-white">Swarm Registry</h2>
         <p className="text-muted-foreground">Real-time capability and load metrics for active minds.</p>
       </div>
-      <AgentsGrid agents>{RegistryData} />
+      <AgentsGrid agents={RegistryData} />
     </div>
   );
 }
