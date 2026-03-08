@@ -8,7 +8,6 @@
   },
   "scripts": {
     "dev": "next dev",
-    "import": "next import",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -22,6 +21,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "server-only": "^0.0.1",
+    "sharp": "^0.33.0",
     "tailwind-merge": "^2.3.0",
     "tailwindcss": "^3.4.3",
     "tailwindcss-animate": "^1.0.7"
@@ -30,7 +30,8 @@
     "@types/node": "^20.12.112",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "eslint": "^8.57.0",
+    "@types/sharp": "^0.32.0",
+    "eslint": "next lint",
     "eslint-config-next": "14.2.0",
     "typescript": "^5.5.4"
   }
