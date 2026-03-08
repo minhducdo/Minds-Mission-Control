@@ -9,7 +9,7 @@ interface JobCardProps {
 }
 
 export const JobCard = ({ title, priority, costEst, agent }: JobCardProps) => (
-  <div className="bg-[#1A1A1A] border border-white/5 rounded-xl p4 hover:border-blue-500/50 transition-all cursor-pointer">
+  <div className="bg-[#1A1A1A] border border-white/5 rounded-xl p-4 hover:border-blue-500/50 transition-all cursor-pointer">
     <div className="flex justify-between items-center mb-2">
       <span className="font-mono text-[8px] text-white/40">PRIORITY</span>
       <div className={
