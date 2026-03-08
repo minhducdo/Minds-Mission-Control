@@ -8,12 +8,13 @@
   },
   "scripts": {
     "dev": "next dev",
+    "import": "next import",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@tansstack/react-query": "^5.28.0",
+    "@tanstack/react-query": "^5.28.0",
     "autoprefixer": "^10.4.19",
     "lucide-react": "^0.363.0",
     "next": "^14.2.0",
@@ -24,7 +25,7 @@
     "tailwindcss": "^3.4.3",
     "tailwindcss-animate": "^1.0.7"
   },
-  "devDependencies": {
+  "devDeendencies": {
     "@types/node": "^20.12.112",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
