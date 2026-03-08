@@ -1,4 +1,4 @@
-import { AgentsGrid } from '@/components/AgentsGrid';
+import AgentsGrid from '@/components/AgentsGrid';
 import { RegistryData } from '@/lib/data';
 
 export default function AgentsPage() {
