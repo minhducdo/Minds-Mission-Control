@@ -1,4 +1,4 @@
-"import type { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import type { ReactNode } from 'react';
 import '@/app/globals.css';
@@ -11,10 +11,10 @@ export const metadata: Metadata = {
   description: 'Mission Control dashboard for managing agent telemetry and registry status.',
 };
 
-export default function RootLayout({ children }: Readonly<{ children: ReactNode }() {
+export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-black text-white min-h-screen antialiased`}>
+      <body className={`${inter.className} bg-black text-white min-h-screen antialiased` }>
         <Providers>
           <div className="max-w-7xl mx-auto px-4">
             <header className="flex items-center gap-3 py-6 border-b border-white/5 mb-8">
